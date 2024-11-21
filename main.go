@@ -4,6 +4,7 @@ import (
 	"blog/provider/config"
 	"blog/provider/http"
 	"blog/router"
+	cu "blog/utility"
 	"os"
 
 	"github.com/gofiber/fiber/v2/log"
@@ -19,12 +20,16 @@ func main() {
 
 	env := config.ReadConfigigurationFile()
 	port := env.GetString("PORT")
+	PROD_CSS := "input"
+	DEV_CSS := "output"
 	// var multiLogFile io.Writer
-	// if env.GetString("ENV") == "PROD" {
-	// multiLogFile = io.MultiWriter(logFile)
-	// } else {
-	// multiLogFile = io.MultiWriter(os.Stdout, logFile)
-	// }
+	if env.GetString("ENV") == "PROD" {
+		// multiLogFile = io.MultiWriter(logFile)
+		cu.BaseCss = &PROD_CSS
+	} else {
+		// multiLogFile = io.MultiWriter(os.Stdout, logFile)
+		cu.BaseCss = &DEV_CSS
+	}
 	// log.SetOutput(multiLogFile)
 
 	engine := handlebars.New("./views/default", ".hbs")
