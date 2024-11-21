@@ -2,6 +2,8 @@ package articles_controllers
 
 import (
 	"blog/provider/converter"
+	wi "blog/provider/interface"
+	cu "blog/utility"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
@@ -21,6 +23,12 @@ func (article *ArticleControllersImpl) GetDetailArticle(c *fiber.Ctx) error {
 		log.Error("Gagal melakukan konversi markdown ke html. Detail: " + err.Error())
 		return fiber.NewError(fiber.StatusInternalServerError, "Gagal melakukan konversi")
 	}
+	css, _ := cu.LoadCss(*cu.BaseCss)
 
-	return c.Render("detail.article", fiber.Map{"embed": html})
+	data := wi.WebInterface{
+		Markdown: html,
+		Styles:   []string{css},
+	}
+
+	return c.Render("detail.article", data)
 }
