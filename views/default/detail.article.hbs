@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preload" href="/public/css/index.css" as="style">
-    <link rel="stylesheet" href="/public/css/index.css">
+    {{#if styles}}
+        {{#each styles}}
+            <style>{{this}}</style>
+        {{/each}}
+    {{/if}}
 
     <title>Article Detail</title>
 </head>
 <body>
     <h1>Detail Artikel</h1>
-    {{{embed}}}
+    {{{markdown}}}
 </body>
 </html>
