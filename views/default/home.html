@@ -36,18 +36,18 @@
          </div>
     </header>
 
-    <main class="mt-10 bg-red w-[80%] mx-auto">
+    <main class="mt-10 w-[80%] mx-auto">
         <!-- NAV -->
-        <section>
+        <section class="">
             <nav class="flex flex-nowrap overflow-x-auto gap-x-10 border-b-2 border-b-gray-400 pb-4 scrollbar-hidden">
-                <p class="pointer flex-shrink-0 font-bold">All Article</p>
-                <p class="pointer flex-shrink-0">Daily</p>
-                <p class="pointer flex-shrink-0">Street</p>
-                <p class="pointer flex-shrink-0">Story</p>
-                <p class="pointer flex-shrink-0">Story</p>
-                <p class="pointer flex-shrink-0">Story</p>
-                <p class="pointer flex-shrink-0">Story</p>
-                <p class="pointer flex-shrink-0">Story</p>
+                <p class="cursor-pointer flex-shrink-0 active">All Article</p>
+                <p class="cursor-pointer flex-shrink-0">Daily</p>
+                <p class="cursor-pointer flex-shrink-0">Street</p>
+                <p class="cursor-pointer flex-shrink-0">Story 1</p>
+                <p class="cursor-pointer flex-shrink-0">Story 2</p>
+                <p class="cursor-pointer flex-shrink-0">Story 3</p>
+                <p class="cursor-pointer flex-shrink-0">Story 4</p>
+                <p class="cursor-pointer flex-shrink-0">Story 5</p>
             </nav>
         </section>
         
@@ -56,20 +56,8 @@
             <!-- Kolom 1 -->
             <div class="grid-sizer"></div>
             <div class="gutter-sizer"></div>
-            <img class="grid-item h-auto" src="https://plus.unsplash.com/premium_photo-1667339610013-020844b87990?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1731978009374-2fbe83ef3af7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1731973453382-647c28c8ba1b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D" alt="">
 
-          
-            <!-- Kolom 2 -->
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1731929464035-1ba6df40565f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" alt="">
-            <img class="grid-item h-auto" src="https://plus.unsplash.com/premium_photo-1731860729763-0d840e56fcd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1732008209481-3f5eed6b4ab5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyOXx8fGVufDB8fHx8fA%3D%3D" alt="">
-          
-            <!-- Kolom 3 -->
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1732045133230-1a670eef8620?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0MHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img class="grid-item h-auto" src="https://plus.unsplash.com/premium_photo-1731959001643-d7cccd81304b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzN3x8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img class="grid-item h-auto" src="https://images.unsplash.com/photo-1732045133230-1a670eef8620?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0MHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            
         </section>
           
         <!-- FOOTER -->
@@ -81,24 +69,49 @@
 </body>
 
 <script src="/public/js/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.js"></script>
+<script src="/public/js/imagesloaded.pkgd.js"></script>
 <script>
-    function distributeItems(items, containers) {
-        items.forEach((item, index) => {
-            const containerIndex = index % containers.length; // Alternate between containers
-            containers[containerIndex].appendChild(item);
-        });
+    const images = [
+        "https://images.unsplash.com/photo-1731978009374-2fbe83ef3af7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1731973453382-647c28c8ba1b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1731929464035-1ba6df40565f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8",
+        "https://plus.unsplash.com/premium_photo-1731860729763-0d840e56fcd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1732008209481-3f5eed6b4ab5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyOXx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1732045133230-1a670eef8620?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0MHx8fGVufDB8fHx8fA%3D%3D",
+        "https://plus.unsplash.com/premium_photo-1731959001643-d7cccd81304b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzN3x8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1732045133230-1a670eef8620?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0MHx8fGVufDB8fHx8fA%3D%3D",
+    ]
+
+    const elem = document.getElementById("masonry-container");
+
+    for (let i = 0; i < images.length; i++) {
+        const image = images[i];
+        elem.insertAdjacentHTML("beforeend", CardItem(image))        
     }
 
+    function CardItem(url) {
+        return `
+            <a href="#" class="grid-item h-auto cursor-pointer no-underline not-italic" onmouseenter="showImageCaption(this)" onmouseleave="hideImageCaption(this)">
+                <div class="relative h-auto rounded-lg overflow-hidden">
+                    <img class="h-auto" src="${url}" alt="">
+                    <figcaption class="absolute bottom-0 sm:-bottom-56 bg-gradient-to-t from-black from-35% to-transparent transition-all ease-in-out h-40 flex flex-col justify-end w-full">
+                        <p class="font-montserrat font-light p-2 pb-4 text-xs text-white">
+                            Cerita singkat kembali suka dengan aktivitas memotret
+                        </p>
+                    </figcaption>
+                </div>
+                <h6 class="font-semibold mt-0 ">Kembali Ke Fotografi</h6>
+            </a>
+        `
+    }
 
-    const elem = document.getElementById('masonry-container')
     var msnry = new Masonry( elem, {
         // options
         itemSelector: '.grid-item',
         columnWidth: '.grid-sizer',
         percentPosition: true,
         initLayout: false,
-        gutter: 10,
+        gutter: 30,
         // horizontalOrder: true
     });
 
@@ -106,5 +119,28 @@
         msnry.layout();
     });
 
+    function showImageCaption(e) {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            return;
+        }
+        const figcaption = e.querySelector('figcaption');
+        if (figcaption) {
+            figcaption.classList.add("sm:bottom-0")
+            figcaption.classList.remove("sm:-bottom-56")
+        } 
+    }
+
+    function hideImageCaption(e) {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            return;
+        }
+        const figcaption = e.querySelector('figcaption');
+        if (figcaption) {
+            figcaption.classList.remove("sm:bottom-0")
+            figcaption.classList.add("sm:-bottom-56")
+        } 
+    }
+
+    
 </script>
 </html>

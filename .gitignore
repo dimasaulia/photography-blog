@@ -5,3 +5,7 @@ node_modules
 *.lockb
 *.ts
 *.json
+*.js
+*.toml
+*.exe
+main

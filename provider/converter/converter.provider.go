@@ -23,6 +23,7 @@ var md = goldmark.New(
 	goldmark.WithRendererOptions(
 		html.WithHardWraps(),
 		html.WithXHTML(),
+		html.WithUnsafe(),
 	),
 )
 
