@@ -30,12 +30,32 @@ h6 {
     @apply text-base
 }
 
-p, a, div {
+p, a, div, ol, ul {
     @apply font-montserrat text-zinc-900 text-base my-0;
 }
 
 a {
-    @apply text-blue-700 font-semibold underline cursor-pointer italic hover:text-blue-400
+    @apply text-blue-700 font-semibold underline cursor-pointer hover:text-blue-400
+}
+
+ol li {
+    @apply list-decimal list-inside font-semibold
+}
+
+ul li {
+    @apply list-disc list-inside font-semibold
+}
+
+ol ol, ul ul, ol ul, ul ol {
+    @apply ml-6;
+}
+
+ol li::marker, ul li::marker {
+    @apply text-red-700;
+}
+
+code {
+    @apply bg-zinc-200 py-1 px-2;
 }
 
 img {
@@ -47,12 +67,19 @@ table, tr, td, th {
 }
 
 table {
-    @apply my-4
+    @apply my-4 font-montserrat
 }
 
-
 thead {
-    @apply bg-zinc-200 text-slate-900
+    @apply bg-gray-300 text-slate-900
+}
+
+hr {
+    @apply border-slate-700 border-b
+}
+
+blockquote {
+    @apply bg-gray-200 ps-6 py-2 pe-2 border-s-4 border-slate-800
 }
 
 .scrollbar-hidden::-webkit-scrollbar {

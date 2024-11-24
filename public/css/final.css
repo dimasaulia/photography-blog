@@ -623,14 +623,6 @@ video {
   display: none;
 }
 
-.aspect-video {
-  aspect-ratio: 16 / 9;
-}
-
-.aspect-\[9\/16\] {
-  aspect-ratio: 9/16;
-}
-
 .h-40 {
   height: 10rem;
 }

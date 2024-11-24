@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    {{#if styles}}
+        {{#each styles}}
+            <style>{{this}}</style>
+        {{/each}}
+    {{/if}}
+</head>
+<body class="bg-zinc-100">
+    {{!-- IMAGE LANDSCAPE --}}
+    <div class="sm:w-full sm:block md:hidden bg-orange-400 h-40 overflow-hidden">
+        <img class="w-full object-cover mx-auto" src="/public/images/home-banner-1-landscape.jpg" alt="">
+    </div>
+    <header class="grid grid-cols-3 mt-10 w-[80%] mx-auto">
+        <!-- DESKRIPSI -->
+        <div class="sm:col-span-3 md:col-span-2 ">
+            <h4 class="mb-1 w-[400px]">DIMAS AULIA FACHRUDIN</h4> 
+            <p class="font-normal mb-16 bg-red-700 w-[400px] text-amber-50 ps-2">Stories After Hours</p>
+            
+            <h5>Tentang Saya</h5> 
+            <p class="font-light w-[400px]">
+                Lahir dan besar di Sukamara, Kalimantan Tengah 24 tahun yang lalu.
+                Punya mimpi dan cita-cita menjadi photographer saat SMA. 
+                Sekarang bekerja <span class="italic">nine to five</span> sebagai programmer.
+
+            </p>
+        </div>
+
+        <!-- IMAGE PORTRAIT -->
+         <div class="sm:col-span-3 md:col-span-1 hidden sm:hidden md:block">
+            <img class="w-[80%] mx-auto" src="/public/images/home-banner-1-portrait.jpg" alt="">
+         </div>
+    </header>
+
+    <main class="mt-10 w-[80%] mx-auto">
+        <!-- NAV -->
+        <section class="">
+            <nav class="flex flex-nowrap overflow-x-auto gap-x-10 border-b-2 border-b-red-700 pb-4 scrollbar-hidden">
+                <p class="cursor-pointer flex-shrink-0 active">All Article</p>
+            </nav>
+        </section>
+        
+        <!-- ARTICLE -->
+        <section class="grid mt-4 " id="masonry-container">
+            <!-- Kolom 1 -->
+            <div class="grid-sizer"></div>
+            <div class="gutter-sizer"></div>            
+        </section>
+          
+        <!-- FOOTER -->
+    </main>
+
+    <footer class="mt-56 mb-10 border-t-2 w-[80%] mx-auto pt-4">
+        <h5>dimasaulia.com</h5>
+    </footer>
+</body>
+
+<script src="/public/js/masonry.pkgd.min.js"></script>
+<script src="/public/js/imagesloaded.pkgd.js"></script>
+<script>
+    const elem = document.getElementById("masonry-container");
+    
+    function CardItem({imgurl, title, description, slug}) {
+        return `
+            <a href="/articles/${slug}" class="grid-item h-auto cursor-pointer no-underline not-italic" onmouseenter="showImageCaption(this)" onmouseleave="hideImageCaption(this)">
+                <div class="relative h-auto rounded-lg overflow-hidden">
+                    <img class="h-auto" src="${imgurl}" alt="Gambar tentang ${title}">
+                    <figcaption class="absolute bottom-0 sm:-bottom-56 bg-gradient-to-t from-black from-35% to-transparent transition-all ease-in-out h-40 flex flex-col justify-end w-full">
+                        <p class="font-montserrat font-light p-2 pb-4 text-xs text-white">
+                            ${description}
+                        </p>
+                    </figcaption>
+                </div>
+                <h6 class="font-semibold mt-0 ">${title}</h6>
+            </a>
+        `
+    }
+
+    async function dataLoader({ url, func }) {
+        const resp = await fetch(url);
+        const data = await resp.json();
+
+        if (!data.success) {
+            alert(resp.message);
+        }
+        if (data.success) {
+            func(data.data);
+        }
+    }
+
+    function loadGalery(data){
+        // SORT THE DATA BY CREATE_DATE
+        data = data.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+        // LOAD THE DATA
+        for (let i = 0; i < data.length; i++) {
+            const article = data[i];
+            elem.insertAdjacentHTML("beforeend", CardItem({
+                imgurl: article?.banner_image,
+                title: article.title,
+                description: article?.description,
+                slug: article.title_slug
+            }))        
+        }
+
+        // SETUP LAYOUT
+        var msnry = new Masonry( elem, {
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true,
+            initLayout: false,
+            gutter: 30,
+            // horizontalOrder: true
+        });
+
+            msnry.layout();
+        //imagesLoaded( document.getElementById('masonry-container'), function( instance ) {
+        //});
+    }
+
+    dataLoader({url: "/articles/list", func: loadGalery});
+
+
+
+    function showImageCaption(e) {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            return;
+        }
+        const figcaption = e.querySelector('figcaption');
+        if (figcaption) {
+            figcaption.classList.add("sm:bottom-0")
+            figcaption.classList.remove("sm:-bottom-56")
+        } 
+    }
+
+    function hideImageCaption(e) {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            return;
+        }
+        const figcaption = e.querySelector('figcaption');
+        if (figcaption) {
+            figcaption.classList.remove("sm:bottom-0")
+            figcaption.classList.add("sm:-bottom-56")
+        } 
+    }
+
+    
+</script>
+</html>

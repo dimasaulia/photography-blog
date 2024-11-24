@@ -25,8 +25,14 @@
         </div>
     </header>
 
-    <main class="mt-10 w-[80%] sm:w-[65%] lg:w-[60%] xl:w-[55%] 2xl:w-[50%] mx-auto ">
-        {{{markdown}}}
+    <main class="mt-10 w-[80%] md:w-[70%] lg:w-[50%] mx-auto overflow-x-clip grid grid-cols-2 gap-x-4">
+        <img class="col-span-2 md:col-span-1 w-64 mx-auto" src="/public/images/warning.webp" alt="Error Page">
+        <div class="col-span-2 md:col-span-1">
+            <p class="font-extrabold text-8xl text-slate-900 mb-2">{{code}}</p>
+            <h1 class="font-montserrat text-lg mb-2">Ada Sesuatu Yang Salah</h1>
+            <p class="mb-12">{{errors}}</p>
+            <a href="/">Kembali Ke Halaman Awal Saja</a>
+        </div>
     </main>
 
     {{> "partials/footer"}}
