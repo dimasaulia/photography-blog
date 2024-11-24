@@ -6,6 +6,7 @@ node_modules
 *.ts
 *.json
 *.js
+*.cjs
 *.toml
 *.exe
 main
