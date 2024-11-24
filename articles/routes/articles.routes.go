@@ -7,5 +7,6 @@ import (
 )
 
 func SetupArticlesRoutes(r fiber.Router, cont cont.ArticleControllers) {
+	r.Get("/list", cont.GetAllArticles)
 	r.Get("/:slug", cont.GetDetailArticle)
 }

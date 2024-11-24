@@ -1,12 +1,12 @@
 package articles_controllers
 
 import (
-	"blog/provider/converter"
 	wi "blog/provider/interface"
+	r "blog/provider/response"
+	s "blog/provider/storage"
 	cu "blog/utility"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/log"
 )
 
 type ArticleControllersImpl struct{}
@@ -16,19 +16,28 @@ func NewArticlesControllers() ArticleControllers {
 }
 
 func (article *ArticleControllersImpl) GetDetailArticle(c *fiber.Ctx) error {
-	articleName := c.Params("slug")
-	articleName += ".md"
-	html, err := converter.MarkdownConverter(articleName)
-	if err != nil {
-		log.Error("Gagal melakukan konversi markdown ke html. Detail: " + err.Error())
-		return fiber.NewError(fiber.StatusInternalServerError, "Gagal melakukan konversi")
+	articleSlug := c.Params("slug")
+	value, exist := (*s.ArticlesContent)[articleSlug]
+	if !exist {
+		return &r.WebError{
+			Code:    400,
+			Message: "Gagal meneumakan artikel",
+		}
 	}
-	css, _ := cu.LoadCss(*cu.BaseCss)
 
 	data := wi.WebInterface{
-		Markdown: html,
-		Styles:   []string{css},
+		Markdown: value.Html,
+		Styles:   []string{*cu.BaseCss},
 	}
 
 	return c.Render("detail.article", data)
+}
+
+func (article *ArticleControllersImpl) GetAllArticles(c *fiber.Ctx) error {
+	resp := r.ApiResponse{
+		Success: true,
+		Message: "Berhasil Mendapatkan Data Article",
+		Data:    *s.ArticlesStorage,
+	}
+	return c.Status(fiber.StatusOK).JSON(resp)
 }
