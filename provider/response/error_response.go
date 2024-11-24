@@ -10,6 +10,15 @@ type ResponseError struct {
 	Success bool        `json:"success"`
 }
 
+type WebError struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
+func (e *WebError) Error() string {
+	return e.Message
+}
+
 func ResponseIfError(err error, code int) {
 	if err != nil {
 		// Handle error from validators

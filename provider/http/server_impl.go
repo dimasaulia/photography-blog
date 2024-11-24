@@ -1,7 +1,10 @@
 package http
 
 import (
+	r "blog/provider/response"
+	u "blog/utility"
 	"fmt"
+	"strings"
 
 	"errors"
 
@@ -36,6 +39,25 @@ func (config HttpServerImpl) Setup() *fiber.App {
 		Prefork: config.Fork,
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
 			code := fiber.StatusInternalServerError
+
+			fmt.Println(err.Error())
+
+			if strings.Contains(err.Error(), "Cannot GET") && err.Error() != "Cannot GET /favicon.ico" {
+				return c.Render("errors", fiber.Map{
+					"styles": []string{*u.BaseCss},
+					"errors": "Halaman yang anda cari sepertinya ikut tenggelam bersama atlantis",
+					"code":   404,
+				})
+			}
+
+			var webError *r.WebError
+			if errors.As(err, &webError) {
+				return c.Render("errors", fiber.Map{
+					"styles": []string{*u.BaseCss},
+					"errors": err.Error(),
+					"code":   webError.Code,
+				})
+			}
 
 			var e *fiber.Error
 			if errors.As(err, &e) {
