@@ -1,4 +1,4 @@
-package criticalcss_utility
+package utility
 
 import (
 	"errors"
