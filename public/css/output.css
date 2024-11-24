@@ -647,6 +647,26 @@ video {
   width: 100%;
 }
 
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[250px\] {
+  width: 250px;
+}
+
+.w-\[350px\] {
+  width: 350px;
+}
+
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[280px\] {
+  width: 280px;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -1083,6 +1103,10 @@ nav .active {
 
   .md\:w-\[70\%\] {
     width: 70%;
+  }
+
+  .md\:w-\[400px\] {
+    width: 400px;
   }
 }
 

@@ -635,6 +635,10 @@ video {
   width: 16rem;
 }
 
+.w-\[280px\] {
+  width: 280px;
+}
+
 .w-\[400px\] {
   width: 400px;
 }
@@ -1079,6 +1083,10 @@ nav .active {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:w-\[400px\] {
+    width: 400px;
   }
 
   .md\:w-\[70\%\] {
