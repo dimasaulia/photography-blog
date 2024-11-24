@@ -623,14 +623,6 @@ video {
   display: none;
 }
 
-.aspect-video {
-  aspect-ratio: 16 / 9;
-}
-
-.aspect-\[9\/16\] {
-  aspect-ratio: 9/16;
-}
-
 .h-40 {
   height: 10rem;
 }
@@ -1036,7 +1028,7 @@ blockquote {
   width: 20px;
 }
 
-nav > .active {
+nav .active {
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity, 1));

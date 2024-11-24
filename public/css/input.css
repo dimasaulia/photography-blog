@@ -101,6 +101,6 @@ blockquote {
 
 .gutter-sizer { width: 20px; }
 
-nav > .active {
+nav .active {
     @apply font-bold text-red-700
 }
