@@ -17,6 +17,7 @@ type ArticlesData struct {
 	Category     string    `json:"category"`
 	Location     []string  `json:"location"`
 	IsPinned     bool      `json:"is_pinned"`
+	IsPublish    bool      `json:"is_publish"`
 	CategorySlug string    `json:"category_slug"`
 	FilePath     string    `json:"file_path"`
 }

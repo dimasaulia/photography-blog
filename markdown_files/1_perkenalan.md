@@ -10,6 +10,7 @@ category: Belajar
 category_slug: belajar
 location: Universitas Indonesia
 is_pinned: true
+is_publish: true
 ---
 
 

@@ -72,18 +72,21 @@ func LoadAllData(path string) error {
 				Category:     fmt.Sprintf("%v", metaData["category"]),
 				Location:     strings.Split(fmt.Sprintf("%v", metaData["location"]), ","),
 				IsPinned:     metaData["is_pinned"].(bool),
+				IsPublish:    metaData["is_publish"].(bool),
 				CategorySlug: fmt.Sprintf("%v", metaData["category_slug"]),
 				FilePath:     fmt.Sprintf("./markdown_files/%v", file.Name()),
 			}
 
-			*s.ArticlesStorage = append(*s.ArticlesStorage, articleMeta)
+			if articleMeta.IsPublish {
+				*s.ArticlesStorage = append(*s.ArticlesStorage, articleMeta)
 
-			var markdown s.ArticlesMarkdown = s.ArticlesMarkdown{
-				Html:         buf.String(),
-				ArticlesData: &articleMeta,
+				var markdown s.ArticlesMarkdown = s.ArticlesMarkdown{
+					Html:         buf.String(),
+					ArticlesData: &articleMeta,
+				}
+				(*s.ArticlesContent)[articleMeta.TitleSlug] = markdown
+				fmt.Println(fmt.Sprintf("Slug %v", articleMeta.TitleSlug))
 			}
-			(*s.ArticlesContent)[articleMeta.TitleSlug] = markdown
-			fmt.Println(fmt.Sprintf("Slug %v", articleMeta.TitleSlug))
 		}
 	}
 
