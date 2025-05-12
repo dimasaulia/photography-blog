@@ -28,12 +28,12 @@ func (m *MonitoringControllersImpl) GetServerMetrics(c *fiber.Ctx) error {
 	serverMetrics := fmt.Sprintf(`
 	# HELP program_memory Show how much program use system memory
     # TYPE program_memory gauge
-    resident_set_size_bytes{program="be-absen", env="%v"} %v
-    heap_limit_bytes{program="be-absen", env="%v"} %v
-    heap_used_bytes{program="be-absen", env="%v"} %v
-    heap_total_bytes{program="be-absen", env="%v"} %v
-    external_bytes{program="be-absen", env="%v"} %v
-    array_buffers_bytes{program="be-absen", env="%v"} %v
+    resident_set_size_bytes{program="be-blog-life", env="%v"} %v
+    heap_limit_bytes{program="be-blog-life", env="%v"} %v
+    heap_used_bytes{program="be-blog-life", env="%v"} %v
+    heap_total_bytes{program="be-blog-life", env="%v"} %v
+    external_bytes{program="be-blog-life", env="%v"} %v
+    array_buffers_bytes{program="be-blog-life", env="%v"} %v
 	`,
 		appEnv, serverStat.RSSBytes,
 		appEnv, serverStat.HeapSysBytes,
